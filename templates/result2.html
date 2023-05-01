@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unqiue Uploaded Videos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/res2.css') }}">
+</head>
+<body>
+    <h1>Unqiue Uploaded videos:</h1>
+    <div>
+    <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Video File Name</th>
+          </tr>
+        </thead>
+        <tbody>
+         {% for i in range(0,l) %}
+          <tr>
+            <td>{{ user_names[i] }}</td>
+            <td>{{ video_names[i] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <br>
+    {% for i in range(0,l) %}
+    <video margin-left="420px" width="500px" height="500px" controls>
+        <source src="{{url_for('static', filename='uploads/'+video_names[i])}}" type="video/mp4">
+    </video>
+    <br>
+    <p>Video Name: {{video_names[i]}} uploaded by: {{user_names[i]}}</p>
+    <br>
+    {% endfor %}
+</body>
+
+</html>

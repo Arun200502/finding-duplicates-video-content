@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PDC PROJECT</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> 
+</head>
+<body>
+  <h1>File Uploading For Finding Duplicate Video</h1>
+  <form id="upload-form" enctype="multipart/form-data" action="/uploaded" method="POST">
+    <p id="GFG_UP" style="font-size: 15px; font-weight: bold;">
+    </p>
+    <div id="container">
+      <div id="file-container">
+        <input type="text" id="t" name="te" value="1" style="display: none;">
+        <br>
+        <label>user 1 :</label> 
+        <input type="file" name="video1" id="file" required><br><br>
+      </div>
+      <div class="addFile">
+        <button type="button" id="add-file-button" onclick="divIncrease()">Add File</button>
+        
+        <button type="submit"  id ="submitBtn">Upload</button>
+        <p>Total number of video can be uploaded =<p id="count" name="value">1</p></p>
+        <br>
+        <br>
+        <p id="GFG_DOWN" style="color:green; font-size: 20px; font-weight: bold;">
+        </p>
+      </div>
+  </div>
+  </form>
+  <script>
+         
+    const addButton = document.getElementById("add-file-button");
+    const container = document.getElementById("container");
+    let fileInput = document.getElementById("file");
+    const submitBtn = document.getElementById("submitBtn");
+    let fileIndex = 2;
+    let containerHeight = 200; // initial height of container
+    
+    addButton.addEventListener("click", () => {
+      
+      const lb=document.createElement("label");
+      lb.id=`l${fileIndex}`;
+      container.querySelector("#file-container").appendChild(lb);
+      document.getElementById(`l${fileIndex}`).innerHTML = `user ${fileIndex}: `;
+      const input = document.createElement("input");
+      input.type = "file";
+      input.name = `video${fileIndex}`;
+      input.required=true;
+      container.querySelector("#file-container").appendChild(input); // append input to file container
+      br = document.createElement("span");
+      br.innerHTML = "<br/><br/>";
+      container.querySelector("#file-container").appendChild(br);
+
+      fileIndex++;
+      document.getElementById("count").innerHTML = fileIndex-1;
+      document.getElementById("t").value=(fileIndex-1).toString();
+      containerHeight += 40; // increase container height by 40 pixels
+      container.style.height = containerHeight + "px"; // set new height of container
+    });
+    
+    submitBtn.addEventListener("click", (e) => {
+      // prevent form submission if no files have been selected
+      if (fileIndex === 2) {
+        e.preventDefault();
+        document.getElementById("GFG_DOWN").innerHTML = "Please select at least two file.";
+      }
+    }); 
+
+  </script>
+</body>
+</html>

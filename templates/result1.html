@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Videos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/res1.css') }}">
+</head>
+<body>
+    <h1>Uploaded videos:</h1>
+    <div>
+    <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Video File Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in range(0,l) %}
+          <tr>
+            <td>{{ i+1 }}</td>
+            <td>{{ video_names[i] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+   
+    </div>
+    <br>
+    <form enctype="multipart/form-data" action="/result" method="POST">
+      <button type="submit"  id ="submitBtn">Result</button>
+    </form>
+</body>
+</html>
